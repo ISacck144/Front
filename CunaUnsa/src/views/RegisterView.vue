@@ -1,89 +1,123 @@
+<!-- src/views/RegisterView.vue -->
 <script setup>
 import { ref } from 'vue'
-import axios from '../axios'
+import api from '../axios'
 import { useRouter } from 'vue-router'
-
-const router = useRouter()
 
 const username = ref('')
 const email = ref('')
 const password = ref('')
-const passwordConfirm = ref('')
+const password_confirm = ref('')
 const error = ref('')
+const success = ref(false)
+
+const router = useRouter()
 
 const register = async () => {
   error.value = ''
+  success.value = false
   try {
-    const response = await axios.post('/auth/register/', {
+    await api.post('/auth/register/', {
       username: username.value,
       email: email.value,
       password: password.value,
-      password_confirm: passwordConfirm.value
+      password_confirm: password_confirm.value,
     })
-    console.log('Usuario registrado:', response.data)
-    router.push('/')
+    success.value = true
+    username.value = ''
+    email.value = ''
+    password.value = ''
+    password_confirm.value = ''
   } catch (err) {
-    if (err.response && err.response.data) {
-      const data = err.response.data
-      error.value = Object.values(data).flat().join(' | ')
-    } else {
-      error.value = 'Error de red o del servidor.'
-    }
-    console.error(err)
+    error.value = 'Error al registrar. Verifica los datos.'
   }
 }
 </script>
 
 <template>
-  <div class="form-container">
+  <div class="register-container">
     <h2>🆕 Registro de Usuario</h2>
+
     <form @submit.prevent="register">
-      <input v-model="username" placeholder="Nombre de usuario" required />
-      <input v-model="email" placeholder="Correo electrónico" required />
+      <input v-model="username" type="text" placeholder="Nombre de usuario" required />
+      <input v-model="email" type="email" placeholder="Correo electrónico" required />
       <input v-model="password" type="password" placeholder="Contraseña" required />
-      <input v-model="passwordConfirm" type="password" placeholder="Confirmar contraseña" required />
+      <input v-model="password_confirm" type="password" placeholder="Confirmar contraseña" required />
       <button type="submit">Registrar</button>
-      <p v-if="error" class="error">{{ error }}</p>
     </form>
+
+    <p v-if="error" class="error">{{ error }}</p>
+    <div v-if="success" class="success">
+      <p>✅ Registro exitoso.</p>
+      <router-link to="/login" class="go-login">👉 Iniciar sesión</router-link>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.form-container {
+.register-container {
   max-width: 400px;
-  margin: 50px auto;
-  background: #fff;
+  margin: 4rem auto;
+  background-color: #fff;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  padding: 0.75rem;
   border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
 button {
-  width: 100%;
-  background: #42b983;
+  padding: 0.75rem;
+  background-color: #42b983;
   color: white;
-  padding: 10px;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
   font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 button:hover {
-  background: #36956c;
+  background-color: #369f6b;
 }
 
 .error {
   color: red;
   margin-top: 1rem;
+}
+
+.success {
+  margin-top: 1.5rem;
+  color: #2ecc71;
+}
+
+.go-login {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.go-login:hover {
+  text-decoration: underline;
 }
 </style>

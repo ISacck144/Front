@@ -1,3 +1,4 @@
+<!-- src/views/HomeView.vue -->
 <script setup>
 import { ref, onMounted } from 'vue'
 import api from '../axios'
@@ -12,52 +13,105 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
-    <h1>🔵 Bienvenido a <span>CunaUnsa</span></h1>
-    <p>Consulta y gestiona toda la información desde estos accesos:</p>
+  <div class="hero">
+    <div class="overlay">
+      <h1 class="title">🔵 Bienvenido a <span>CunaUnsa</span></h1>
+      <p class="subtitle">Tu aula virtual para gestionar alumnos, cursos y más.</p>
 
-    <div class="card-grid">
-      <router-link to="/register" class="card">🆕 Registrarse</router-link>
-      <a class="card" href="http://127.0.0.1:8000/api/auth/login/">🔐 Iniciar Sesión</a>
-      <a class="card" href="http://127.0.0.1:8000/api/students/">👶 Alumnos</a>
-      <a class="card" href="http://127.0.0.1:8000/api/courses/">📚 Cursos</a>
-      <a class="card" href="http://127.0.0.1:8000/api/teachers/">👩‍🏫 Profesores</a>
-      <a class="card" href="http://127.0.0.1:8000/api/workloads/">📦 Cargas Lectivas</a>
-      <a class="card" href="http://127.0.0.1:8000/api/inscriptions/">📝 Inscripciones</a>
-      <a class="card" href="http://127.0.0.1:8000/api/announcements/">📢 Anuncios</a>
-      <a class="card" href="http://127.0.0.1:8000/api/grades/">📈 Notas</a>
-      <a class="card" href="http://127.0.0.1:8000/api/yearcourses/">📅 Cursos por Año</a>
-      <a class="card" href="http://127.0.0.1:8000/api/proxys/">👨‍👩‍👧 Apoderados</a>
-      <a class="card" href="http://127.0.0.1:8000/api/users/">🧑‍💻 Usuarios</a>
-      <a class="card" href="http://127.0.0.1:8000/api/auth/profile/">🙍 Perfil</a>
+      <div class="actions">
+        <router-link to="/register" class="btn primary">🆕 Registrarse</router-link>
+        <a class="btn secondary" href="http://127.0.0.1:8000/api/auth/login/">🔐 Iniciar Sesión</a>
+      </div>
+
+      <div class="grid">
+        <a class="card" href="http://127.0.0.1:8000/api/students/">👶 Alumnos</a>
+        <a class="card" href="http://127.0.0.1:8000/api/courses/">📚 Cursos</a>
+        <a class="card" href="http://127.0.0.1:8000/api/teachers/">👩‍🏫 Profesores</a>
+        <a class="card" href="http://127.0.0.1:8000/api/workloads/">📦 Cargas Lectivas</a>
+        <a class="card" href="http://127.0.0.1:8000/api/inscriptions/">📝 Inscripciones</a>
+        <a class="card" href="http://127.0.0.1:8000/api/announcements/">📢 Anuncios</a>
+        <a class="card" href="http://127.0.0.1:8000/api/grades/">📈 Notas</a>
+        <a class="card" href="http://127.0.0.1:8000/api/yearcourses/">📅 Cursos por Año</a>
+        <a class="card" href="http://127.0.0.1:8000/api/proxys/">👨‍👩‍👧 Apoderados</a>
+        <a class="card" href="http://127.0.0.1:8000/api/users/">🧑‍💻 Usuarios</a>
+        <a class="card" href="http://127.0.0.1:8000/api/auth/profile/">🙍 Perfil</a>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.container {
-  max-width: 900px;
-  margin: 0 auto;
+.hero {
+  background-image: url('/fondo-aula.jpg'); /* 👉 Agrega esta imagen en la carpeta public/ */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem 3rem;
+  border-radius: 20px;
   text-align: center;
-  padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  max-width: 1000px;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.container h1 {
-  font-size: 2rem;
+.title {
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  color: #2c3e50;
 }
 
-.container h1 span {
+.title span {
   color: #42b983;
 }
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s;
+  font-size: 1rem;
+}
+
+.btn.primary {
+  background-color: #42b983;
+  color: white;
+}
+
+.btn.secondary {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .card {
