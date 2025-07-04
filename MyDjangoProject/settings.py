@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-m%2syqw*&)p9mm8u2*lh-
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'  # ← Cambiar 'True' por 'False'
 
 # Configurar ALLOWED_HOSTS para Vercel
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'tu-backend.onrender.com']
 # Siempre agregar hosts de producción (más seguro)
 ALLOWED_HOSTS.extend([
     '.vercel.app',
@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'Apps.Cuna',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +91,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'MyDjangoProject.urls'
@@ -140,7 +142,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     "https://cuna-api-unsa-nine.vercel.app",
-    "https://cuna-unsa-git-main-karla-miluska-bedregal-coaguilas-projects.vercel.app",  
+    "https://cuna-unsa-git-main-karla-miluska-bedregal-coaguilas-projects.vercel.app", 
+    'https://tu-frontend.netlify.app',
 ]
 if not DEBUG:
     CORS_ALLOWED_ORIGINS.extend([
