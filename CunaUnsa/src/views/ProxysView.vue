@@ -45,7 +45,7 @@ onMounted(async () => {
   font-family: 'Segoe UI', sans-serif;
   background-color: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -71,4 +71,6 @@ h2 {
   padding: 1rem;
   border-radius: 12px;
   border: 1px solid #ddd;
-  box-shadow: 0 2px 6px rgba
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+</style>
