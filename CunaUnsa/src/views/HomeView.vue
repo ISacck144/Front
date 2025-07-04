@@ -20,21 +20,21 @@ onMounted(() => {
 
       <div class="actions">
         <router-link to="/register" class="btn primary">🆕 Registrarse</router-link>
-        <a class="btn secondary" href="http://127.0.0.1:8000/api/auth/login/">🔐 Iniciar Sesión</a>
+        <router-link to="/login" class="btn secondary">🔐 Iniciar Sesión</router-link>
       </div>
 
       <div class="grid">
-        <a class="card" href="http://127.0.0.1:8000/api/students/">👶 Alumnos</a>
-        <a class="card" href="http://127.0.0.1:8000/api/courses/">📚 Cursos</a>
-        <a class="card" href="http://127.0.0.1:8000/api/teachers/">👩‍🏫 Profesores</a>
-        <a class="card" href="http://127.0.0.1:8000/api/workloads/">📦 Cargas Lectivas</a>
-        <a class="card" href="http://127.0.0.1:8000/api/inscriptions/">📝 Inscripciones</a>
-        <a class="card" href="http://127.0.0.1:8000/api/announcements/">📢 Anuncios</a>
-        <a class="card" href="http://127.0.0.1:8000/api/grades/">📈 Notas</a>
-        <a class="card" href="http://127.0.0.1:8000/api/yearcourses/">📅 Cursos por Año</a>
-        <a class="card" href="http://127.0.0.1:8000/api/proxys/">👨‍👩‍👧 Apoderados</a>
-        <a class="card" href="http://127.0.0.1:8000/api/users/">🧑‍💻 Usuarios</a>
-        <a class="card" href="http://127.0.0.1:8000/api/auth/profile/">🙍 Perfil</a>
+        <router-link to="/students" class="card">👶 Alumnos</router-link>
+        <router-link to="/courses" class="card">📚 Cursos</router-link>
+        <router-link to="/teachers" class="card">👩‍🏫 Profesores</router-link>
+        <router-link to="/workloads" class="card">📦 Cargas Lectivas</router-link>
+        <router-link to="/inscriptions" class="card">📝 Inscripciones</router-link>
+        <router-link to="/announcements" class="card">📢 Anuncios</router-link>
+        <router-link to="/grades" class="card">📈 Notas</router-link>
+        <router-link to="/yearcourses" class="card">📅 Cursos por Año</router-link>
+        <router-link to="/proxys" class="card">👨‍👩‍👧 Apoderados</router-link>
+        <router-link to="/users" class="card">🧑‍💻 Usuarios</router-link>
+        <router-link to="/profile" class="card">🙍 Perfil</router-link>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@ onMounted(() => {
 
 <style scoped>
 .hero {
-  background-image: url('/fondo-aula.jpg'); /* 👉 Agrega esta imagen en la carpeta public/ */
+  background-image: url('/fondo-aula.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
